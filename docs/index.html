@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Roadmap | Data & AI Careers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/roadmap.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1 class="logo">📚 Learning Roadmap</h1>
+        <p class="tagline">Choose your path. Track your progress. Build your career.</p>
+      </div>
+    </header>
+
+    <!-- Journey Selection -->
+    <section class="journey-selection" id="journeySection">
+      <h2>Choose Your Journey</h2>
+      <div class="journey-cards">
+        <button class="journey-card" data-journey="data-engineer">
+          <span class="card-icon">🔧</span>
+          <h3>Data Engineer</h3>
+          <p>Build data pipelines, warehouses & infrastructure</p>
+          <span class="card-duration">10-12 months</span>
+        </button>
+        <button class="journey-card" data-journey="data-scientist">
+          <span class="card-icon">📊</span>
+          <h3>Data Scientist</h3>
+          <p>Statistics, ML models & business insights</p>
+          <span class="card-duration">12-18 months</span>
+        </button>
+        <button class="journey-card" data-journey="ml-engineer">
+          <span class="card-icon">🤖</span>
+          <h3>ML Engineer</h3>
+          <p>End-to-end ML systems & production deployment</p>
+          <span class="card-duration">18-24 months</span>
+        </button>
+        <button class="journey-card" data-journey="ai-engineer">
+          <span class="card-icon">✨</span>
+          <h3>AI Engineer</h3>
+          <p>LLMs, RAG, GenAI & modern AI applications</p>
+          <span class="card-duration">12-18 months</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Roadmap View -->
+    <section class="roadmap-section hidden" id="roadmapSection">
+      <div class="roadmap-header">
+        <button class="back-btn" id="backBtn">← Back to journeys</button>
+        <div class="progress-summary">
+          <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <span class="progress-text" id="progressText">0% complete</span>
+        </div>
+      </div>
+
+      <div class="roadmap-content" id="roadmapContent">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>
+      <a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap" target="_blank">View on GitHub</a> •
+      <a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap/blob/main/docs/QUICK_START.md" target="_blank">Quick Start</a> •
+      <a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap/blob/main/docs/STUDY_SCHEDULES.md" target="_blank">Study Schedules</a>
+      • Progress saved locally in your browser
+    </p>
+  </footer>
+
+  <script src="assets/roadmap.js"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@
 
 **A comprehensive, structured roadmap to become an AI/ML Engineer from scratch**
 
-[📖 Full Roadmap Doc](./AI_ML_Engineer_Complete_Roadmap.docx) • [⚡ Quick Start](./docs/QUICK_START.md) • [📊 Track Progress](#progress-tracking) • [🤝 Contributing](#contributing)
+[🌐 Interactive Roadmap](https://ananttripathi.github.io/Senior-Data-Scientist-Roadmap/) • [📖 Full Roadmap Doc](./AI_ML_Engineer_Complete_Roadmap.docx) • [⚡ Quick Start](./docs/QUICK_START.md) • [📊 Track Progress](#progress-tracking) • [🤝 Contributing](#contributing)
 
 </div>
 
@@ -52,6 +52,14 @@ This repository contains a **complete, actionable roadmap** for transitioning in
 - Data Analysts moving into ML Engineering
 - Students pursuing AI/ML careers
 - Self-learners looking for structure
+
+---
+
+## 🌐 Interactive Roadmap (Web App)
+
+**[Try the interactive roadmap →](https://ananttripathi.github.io/Senior-Data-Scientist-Roadmap/)**
+
+Choose your journey (Data Engineer, Data Scientist, ML Engineer, AI Engineer), browse phases & topics, and **track your progress**—saved locally in your browser. No account needed.
 
 ---
 
