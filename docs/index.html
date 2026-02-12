@@ -20,7 +20,7 @@
     }
     *,*::before,*::after{box-sizing:border-box}
     html{font-size:18px;scroll-behavior:smooth}
-    body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.65;min-height:100vh;-webkit-font-smoothing:antialiased}
+    body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.65;min-height:100vh;-webkit-font-smoothing:antialiased}
     .app{max-width:920px;margin:0 auto;padding:2.5rem 1.75rem;min-height:calc(100vh - 60px)}
     .header{text-align:center;margin-bottom:3rem}
     .logo{font-size:2rem;font-weight:700;margin:0 0 0.5rem;letter-spacing:-0.02em}
@@ -54,14 +54,19 @@
     .phase-content{display:none;padding:1rem 1.5rem 1.5rem;border-top:1px solid var(--border)}
     .phase-card.expanded .phase-content{display:block}
     .topic-list{list-style:none;padding:0;margin:0}
-    .topic-item{display:flex;align-items:center;gap:1rem;padding:0.75rem 0;border-bottom:1px solid var(--border);font-size:1.05rem;line-height:1.5}
+    .topic-item{display:flex;align-items:flex-start;gap:1rem;padding:0.75rem 0;border-bottom:1px solid var(--border);font-size:1.05rem;line-height:1.5}
     .topic-item:last-child{border-bottom:none}
-    .topic-checkbox{width:22px;height:22px;border-radius:5px;border:2px solid var(--border);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .topic-checkbox{width:22px;height:22px;border-radius:5px;border:2px solid var(--border);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:2px}
     .topic-checkbox:hover{border-color:var(--accent)}
     .topic-checkbox.checked{background:var(--success);border-color:var(--success)}
     .topic-checkbox.checked::after{content:'✓';color:white;font-size:12px;font-weight:bold}
-    .topic-label{flex:1;cursor:pointer;color:var(--text-secondary)}
-    .topic-item.done .topic-label{color:var(--text-muted);text-decoration:line-through}
+    .topic-content{flex:1;min-width:0}
+    .topic-link{color:var(--text-secondary);text-decoration:none;display:inline-flex;align-items:center;gap:0.35rem;transition:color 0.2s}
+    .topic-link:hover{color:var(--accent);text-decoration:underline}
+    .topic-link .link-icon{font-size:0.85em;opacity:0.8}
+    .topic-item.done .topic-link{color:var(--text-muted);text-decoration:line-through}
+    .topic-item.done .topic-link:hover{color:var(--accent)}
+    .topic-desc{font-size:0.9rem;color:var(--text-muted);margin-top:0.25rem}
     .footer{text-align:center;padding:2rem;color:var(--text-muted);font-size:0.95rem}
     .footer a{color:var(--accent);text-decoration:none}
     .footer a:hover{text-decoration:underline}
@@ -120,43 +125,202 @@
   </div>
 
   <footer class="footer">
-    <p><a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap" target="_blank">View on GitHub</a> • Progress saved in browser</p>
+    <p><a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap" target="_blank">View on GitHub</a> • <a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap/blob/main/resources/useful-links.md" target="_blank">All Resources</a> • Progress saved in browser</p>
   </footer>
 
   <script>
     const STORAGE_KEY='roadmap-progress';
+    const ROOT='https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap';
     const roadmaps={
       'data-engineer':{name:'Data Engineer',phases:[
-        {id:'de-p0',name:'Phase 0: Prerequisites',duration:'2-4 weeks',topics:['Command line & shell scripting','Git & GitHub workflow','Basic Python syntax','File I/O & JSON/CSV parsing']},
-        {id:'de-p1',name:'Phase 1: Foundations',duration:'2-3 months',topics:['Python: data structures, OOP, error handling','SQL: SELECT, JOINs, aggregates, GROUP BY','SQL: Subqueries, CTEs, window functions','Relational DBs: PostgreSQL/MySQL, normalization','Data modeling: ERD, star vs snowflake schema','Linux: grep, awk, sed, cron jobs','Version control & collaboration']},
-        {id:'de-p2',name:'Phase 2: Core Data Engineering',duration:'3-4 months',topics:['ETL/ELT pipeline design & patterns','Apache Airflow: DAGs, operators, scheduling','Cloud: AWS S3, RDS, Redshift (or GCP/Azure)','Data warehousing: Snowflake, BigQuery','dbt: models, tests, docs, incremental','Data quality: Great Expectations, validation','Error handling, idempotency, retry logic']},
-        {id:'de-p3',name:'Phase 3: Big Data & Streaming',duration:'3-4 months',topics:['Apache Spark: RDDs, DataFrames, Spark SQL','PySpark: transformations, optimizations','Apache Kafka: producers, consumers, topics','Stream processing: Kafka Streams or Flink','Data Lakehouse: Delta Lake, Iceberg, Hudi','Medallion architecture (Bronze, Silver, Gold)']},
-        {id:'de-p4',name:'Phase 4: DevOps & Production',duration:'2-3 months',topics:['Docker: containers, Dockerfiles, Compose','CI/CD: GitHub Actions, pipeline automation','Terraform or IaC basics','Data governance & lineage','Monitoring: Prometheus, Grafana, DataDog','Security: encryption, IAM, access control']}
+        {id:'de-p0',name:'Phase 0: Prerequisites',duration:'2-4 weeks',topics:[
+          {n:'Command line & shell scripting',u:'https://linuxjourney.com/',d:'Linux Journey - free interactive tutorial'},
+          {n:'Git & GitHub workflow',u:'https://learngitbranching.js.org/',d:'Learn Git Branching - visual, interactive'},
+          {n:'Basic Python syntax',u:'https://docs.python.org/3/tutorial/',d:'Official Python tutorial'},
+          {n:'File I/O & JSON/CSV parsing',u:'https://realpython.com/read-write-files-python/',d:'Real Python - file handling'}
+        ]},
+        {id:'de-p1',name:'Phase 1: Foundations',duration:'2-3 months',topics:[
+          {n:'Python: data structures, OOP, error handling',u:'https://docs.python.org/3/tutorial/',d:'Python docs'},
+          {n:'SQL: SELECT, JOINs, aggregates, GROUP BY',u:'https://www.sqlbolt.com/',d:'SQLBolt - interactive SQL'},
+          {n:'SQL: Subqueries, CTEs, window functions',u:'https://mode.com/sql-tutorial/sql-window-functions/',d:'Mode Analytics - window functions'},
+          {n:'Relational DBs: PostgreSQL/MySQL, normalization',u:'https://www.postgresql.org/docs/current/tutorial.html',d:'PostgreSQL tutorial'},
+          {n:'Data modeling: ERD, star vs snowflake schema',u:'https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/',d:'Kimball - dimensional modeling'},
+          {n:'Linux: grep, awk, sed, cron jobs',u:'https://linuxjourney.com/lesson/grep-command',d:'Linux Journey'},
+          {n:'Version control & collaboration',u:'https://git-scm.com/book/en/v2',d:'Pro Git book - free'}
+        ]},
+        {id:'de-p2',name:'Phase 2: Core Data Engineering',duration:'3-4 months',topics:[
+          {n:'ETL/ELT pipeline design & patterns',u:'https://www.stitchdata.com/resources/etl/',d:'ETL patterns guide'},
+          {n:'Apache Airflow: DAGs, operators, scheduling',u:'https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html',d:'Airflow tutorial'},
+          {n:'Cloud: AWS S3, RDS, Redshift',u:'https://aws.amazon.com/getting-started/hands-on/',d:'AWS hands-on labs'},
+          {n:'Data warehousing: Snowflake, BigQuery',u:'https://cloud.google.com/bigquery/docs',d:'BigQuery docs'},
+          {n:'dbt: models, tests, docs, incremental',u:'https://docs.getdbt.com/docs/build',d:'dbt documentation'},
+          {n:'Data quality: Great Expectations, validation',u:'https://docs.greatexpectations.io/docs/',d:'Great Expectations docs'},
+          {n:'Error handling, idempotency, retry logic',u:'https://engineering.fb.com/2015/04/16/core-data/reliable-data-pipelines/',d:'Reliable data pipelines'}
+        ]},
+        {id:'de-p3',name:'Phase 3: Big Data & Streaming',duration:'3-4 months',topics:[
+          {n:'Apache Spark: RDDs, DataFrames, Spark SQL',u:'https://spark.apache.org/docs/latest/quick-start.html',d:'Spark quick start'},
+          {n:'PySpark: transformations, optimizations',u:'https://spark.apache.org/docs/latest/api/python/getting_started/quickstart.html',d:'PySpark quick start'},
+          {n:'Apache Kafka: producers, consumers, topics',u:'https://kafka.apache.org/documentation/',d:'Kafka documentation'},
+          {n:'Stream processing: Kafka Streams or Flink',u:'https://kafka.apache.org/documentation/streams/',d:'Kafka Streams'},
+          {n:'Data Lakehouse: Delta Lake, Iceberg, Hudi',u:'https://docs.delta.io/latest/index.html',d:'Delta Lake docs'},
+          {n:'Medallion architecture (Bronze, Silver, Gold)',u:'https://www.databricks.com/glossary/medallion-architecture',d:'Databricks - medallion'}
+        ]},
+        {id:'de-p4',name:'Phase 4: DevOps & Production',duration:'2-3 months',topics:[
+          {n:'Docker: containers, Dockerfiles, Compose',u:'https://docs.docker.com/get-started/',d:'Docker get started'},
+          {n:'CI/CD: GitHub Actions, pipeline automation',u:'https://docs.github.com/en/actions',d:'GitHub Actions docs'},
+          {n:'Terraform or IaC basics',u:'https://learn.hashicorp.com/terraform',d:'Terraform learn'},
+          {n:'Data governance & lineage',u:'https://www.collibra.com/us/en/blog/data-lineage',d:'Data lineage guide'},
+          {n:'Monitoring: Prometheus, Grafana, DataDog',u:'https://prometheus.io/docs/tutorials/getting_started/',d:'Prometheus tutorial'},
+          {n:'Security: encryption, IAM, access control',u:'https://aws.amazon.com/iam/getting-started/',d:'AWS IAM basics'}
+        ]}
       ]},
       'data-scientist':{name:'Data Scientist',phases:[
-        {id:'ds-p0',name:'Phase 0: Prerequisites',duration:'2-4 weeks',topics:['Python basics & Jupyter','Command line & Git','Basic SQL']},
-        {id:'ds-p1',name:'Phase 1: Foundation',duration:'3-4 months',topics:['Linear Algebra: vectors, matrices, SVD, PCA','Calculus: derivatives, gradients, optimization','Probability: distributions, Bayes theorem','Statistics: hypothesis testing, p-values, CI','Python: NumPy, Pandas, data manipulation','Visualization: Matplotlib, Seaborn, Plotly','SQL: queries, joins, aggregations','EDA & exploratory analysis']},
-        {id:'ds-p2',name:'Phase 2: Machine Learning',duration:'4-5 months',topics:['Supervised: regression, classification','Unsupervised: clustering, PCA, dimensionality reduction','Model evaluation: metrics, cross-validation','Feature engineering & selection','Tree models: Decision Trees, RF, XGBoost','Regularization, hyperparameter tuning','Imbalanced data & SMOTE','Statistical modeling (GLM, survival analysis)']},
-        {id:'ds-p3',name:'Phase 3: Advanced ML & Communication',duration:'3-4 months',topics:['Deep learning basics (when to use)','NLP intro: text classification, NER','A/B testing & experimentation design','Causal inference basics','Business metrics & KPI definition','Storytelling & data-driven presentations','Dashboard tools: Tableau, Looker, Power BI','SQL for analytics, window functions']},
-        {id:'ds-p4',name:'Phase 4: Domain & Portfolio',duration:'Ongoing',topics:['Specialization: NLP, CV, or domain (finance, healthcare)','MLOps basics: model deployment, monitoring','Portfolio: 5-8 end-to-end projects','Kaggle competitions','Interview prep: stats, ML, case studies']}
+        {id:'ds-p0',name:'Phase 0: Prerequisites',duration:'2-4 weeks',topics:[
+          {n:'Python basics & Jupyter',u:'https://jupyter.org/try',d:'Try Jupyter online'},
+          {n:'Command line & Git',u:'https://learngitbranching.js.org/',d:'Learn Git Branching'},
+          {n:'Basic SQL',u:'https://www.kaggle.com/learn/intro-to-sql',d:'Kaggle - Intro to SQL'}
+        ]},
+        {id:'ds-p1',name:'Phase 1: Foundation',duration:'3-4 months',topics:[
+          {n:'Linear Algebra: vectors, matrices, SVD, PCA',u:'https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab',d:'3Blue1Brown - Essence of Linear Algebra'},
+          {n:'Calculus: derivatives, gradients, optimization',u:'https://www.youtube.com/playlist?list=PLZHQObOWTQDx3J3fR_PxNv3VGjQ1t0s',d:'3Blue1Brown - Essence of Calculus'},
+          {n:'Probability: distributions, Bayes theorem',u:'https://www.youtube.com/c/joshstarmer',d:'StatQuest - Probability'},
+          {n:'Statistics: hypothesis testing, p-values, CI',u:'https://www.khanacademy.org/math/statistics-probability',d:'Khan Academy Statistics'},
+          {n:'Python: NumPy, Pandas, data manipulation',u:'https://pandas.pydata.org/docs/user_guide/10min.html',d:'10 Minutes to Pandas'},
+          {n:'Visualization: Matplotlib, Seaborn, Plotly',u:'https://seaborn.pydata.org/tutorial.html',d:'Seaborn tutorial'},
+          {n:'SQL: queries, joins, aggregations',u:'https://www.sqlbolt.com/',d:'SQLBolt'},
+          {n:'EDA & exploratory analysis',u:'https://www.kaggle.com/learn/data-cleaning',d:'Kaggle - Data Cleaning'}
+        ]},
+        {id:'ds-p2',name:'Phase 2: Machine Learning',duration:'4-5 months',topics:[
+          {n:'Supervised: regression, classification',u:'https://www.coursera.org/learn/machine-learning',d:'Andrew Ng - Machine Learning'},
+          {n:'Unsupervised: clustering, PCA',u:'https://scikit-learn.org/stable/unsupervised_learning.html',d:'sklearn unsupervised'},
+          {n:'Model evaluation: metrics, cross-validation',u:'https://scikit-learn.org/stable/model_selection.html',d:'sklearn model selection'},
+          {n:'Feature engineering & selection',u:'https://www.kaggle.com/learn/feature-engineering',d:'Kaggle - Feature Engineering'},
+          {n:'Tree models: Decision Trees, RF, XGBoost',u:'https://www.youtube.com/watch?v=J4Wdy0Wc_xQ',d:'StatQuest - Random Forest'},
+          {n:'Regularization, hyperparameter tuning',u:'https://scikit-learn.org/stable/modules/grid_search.html',d:'sklearn GridSearch'},
+          {n:'Imbalanced data & SMOTE',u:'https://imbalanced-learn.org/stable/',d:'imbalanced-learn docs'},
+          {n:'Statistical modeling (GLM, survival analysis)',u:'https://www.statsmodels.org/stable/user-guide.html',d:'statsmodels docs'}
+        ]},
+        {id:'ds-p3',name:'Phase 3: Advanced ML & Communication',duration:'3-4 months',topics:[
+          {n:'Deep learning basics (when to use)',u:'https://course.fast.ai/',d:'fast.ai - Practical DL'},
+          {n:'NLP intro: text classification, NER',u:'https://huggingface.co/course/chapter1/1',d:'Hugging Face NLP course'},
+          {n:'A/B testing & experimentation design',u:'https://www.evanmiller.org/ab-testing/',d:'Evan Miller - A/B testing'},
+          {n:'Causal inference basics',u:'https://www.youtube.com/watch?v=8B-SR8hE-m0',d:'StatQuest - Causal inference'},
+          {n:'Business metrics & KPI definition',u:'https://amplitude.com/blog/product-metrics',d:'Product metrics guide'},
+          {n:'Storytelling & data-driven presentations',u:'https://www.storytellingwithdata.com/',d:'Storytelling with Data'},
+          {n:'Dashboard tools: Tableau, Looker, Power BI',u:'https://www.tableau.com/learn/training',d:'Tableau training'},
+          {n:'SQL for analytics, window functions',u:'https://mode.com/sql-tutorial/sql-window-functions/',d:'Window functions tutorial'}
+        ]},
+        {id:'ds-p4',name:'Phase 4: Domain & Portfolio',duration:'Ongoing',topics:[
+          {n:'Specialization: NLP, CV, or domain',u:'https://www.kaggle.com/learn',d:'Kaggle Learn'},
+          {n:'MLOps basics: model deployment, monitoring',u:'https://ml-ops.org/',d:'MLOps guide'},
+          {n:'Portfolio: 5-8 end-to-end projects',u:ROOT+'/blob/main/projects/beginner/README.md',d:'Project ideas'},
+          {n:'Kaggle competitions',u:'https://www.kaggle.com/competitions',d:'Kaggle Competitions'},
+          {n:'Interview prep: stats, ML, case studies',u:ROOT+'/blob/main/docs/INTERVIEW_PREP.md',d:'Interview prep guide'}
+        ]}
       ]},
       'ml-engineer':{name:'ML Engineer',phases:[
-        {id:'ml-p0',name:'Phase 0: Developer Fundamentals',duration:'1-2 weeks',topics:['Command line, file navigation','Git & GitHub, branching','IDE: VS Code, debugging','Virtual environments, pip, requirements.txt']},
-        {id:'ml-p1',name:'Phase 1: Foundation',duration:'3-4 months',topics:['Linear Algebra: vectors, matrices, eigenvalues','Calculus: gradients, chain rule, optimization','Probability & Statistics for ML','Python: NumPy, Pandas, Matplotlib','Jupyter, data cleaning with Pandas','Basic SQL for data access']},
-        {id:'ml-p2',name:'Phase 2: ML Fundamentals',duration:'4-6 months',topics:['Supervised & unsupervised learning','Model evaluation, cross-validation, metrics','Feature engineering & preprocessing','scikit-learn pipelines','Tree models: RF, XGBoost, LightGBM, CatBoost','Handling imbalanced & missing data','SQL & data processing for ML']},
-        {id:'ml-p3',name:'Phase 3: Deep Learning',duration:'5-7 months',topics:['Neural networks, backpropagation','PyTorch or TensorFlow/Keras','CNNs: conv layers, transfer learning','NLP: embeddings, RNNs, attention','Transformers: BERT, GPT architecture','Computer vision: object detection, segmentation','LLMs & RAG overview']},
-        {id:'ml-p4',name:'Phase 4: MLOps',duration:'3-4 months',topics:['Docker: containerizing ML models','MLflow: experiments, registry, deployment','DVC: data & model versioning','FastAPI: REST APIs for inference','Feature stores (Feast, Tecton)','Model monitoring & drift detection','CI/CD for ML pipelines']},
-        {id:'ml-p5',name:'Phase 5: Cloud & Big Data',duration:'2-3 months',topics:['Cloud ML: SageMaker, Vertex AI, Azure ML','Spark MLlib, distributed training','Kafka for real-time inference','Kubernetes for model serving']},
-        {id:'ml-p6',name:'Phase 6: Advanced & Portfolio',duration:'Ongoing',topics:['Time series, RL, or Graph ML','15-20 portfolio projects','System design for ML','Interview prep: coding, ML, design']}
+        {id:'ml-p0',name:'Phase 0: Developer Fundamentals',duration:'1-2 weeks',topics:[
+          {n:'Command line, file navigation',u:'https://linuxjourney.com/',d:'Linux Journey'},
+          {n:'Git & GitHub, branching',u:'https://learngitbranching.js.org/',d:'Learn Git Branching'},
+          {n:'IDE: VS Code, debugging',u:'https://code.visualstudio.com/docs/python/python-tutorial',d:'VS Code Python'},
+          {n:'Virtual environments, pip, requirements.txt',u:'https://docs.python.org/3/tutorial/venv.html',d:'Python venv'}
+        ]},
+        {id:'ml-p1',name:'Phase 1: Foundation',duration:'3-4 months',topics:[
+          {n:'Linear Algebra: vectors, matrices, eigenvalues',u:'https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab',d:'3Blue1Brown - Linear Algebra'},
+          {n:'Calculus: gradients, chain rule, optimization',u:'https://www.youtube.com/playlist?list=PLZHQObOWTQDx3J3fR_PxNv3VGjQ1t0s',d:'3Blue1Brown - Calculus'},
+          {n:'Probability & Statistics for ML',u:'https://www.youtube.com/c/joshstarmer',d:'StatQuest'},
+          {n:'Python: NumPy, Pandas, Matplotlib',u:'https://numpy.org/doc/stable/user/quickstart.html',d:'NumPy quickstart'},
+          {n:'Jupyter, data cleaning with Pandas',u:'https://pandas.pydata.org/docs/user_guide/10min.html',d:'10 Minutes to Pandas'},
+          {n:'Basic SQL for data access',u:'https://www.sqlbolt.com/',d:'SQLBolt'}
+        ]},
+        {id:'ml-p2',name:'Phase 2: ML Fundamentals',duration:'4-6 months',topics:[
+          {n:'Supervised & unsupervised learning',u:'https://www.coursera.org/learn/machine-learning',d:'Andrew Ng - ML'},
+          {n:'Model evaluation, cross-validation, metrics',u:'https://scikit-learn.org/stable/model_selection.html',d:'sklearn model selection'},
+          {n:'Feature engineering & preprocessing',u:'https://scikit-learn.org/stable/modules/preprocessing.html',d:'sklearn preprocessing'},
+          {n:'scikit-learn pipelines',u:'https://scikit-learn.org/stable/modules/compose.html',d:'sklearn pipelines'},
+          {n:'Tree models: RF, XGBoost, LightGBM, CatBoost',u:'https://xgboost.readthedocs.io/en/stable/tutorials/index.html',d:'XGBoost tutorials'},
+          {n:'Handling imbalanced & missing data',u:'https://imbalanced-learn.org/stable/',d:'imbalanced-learn'},
+          {n:'SQL & data processing for ML',u:'https://www.kaggle.com/learn/advanced-sql',d:'Kaggle - Advanced SQL'}
+        ]},
+        {id:'ml-p3',name:'Phase 3: Deep Learning',duration:'5-7 months',topics:[
+          {n:'Neural networks, backpropagation',u:'https://www.youtube.com/watch?v=aircAruvnKk',d:'3Blue1Brown - Neural networks'},
+          {n:'PyTorch or TensorFlow/Keras',u:'https://pytorch.org/tutorials/beginner/basics/intro.html',d:'PyTorch basics'},
+          {n:'CNNs: conv layers, transfer learning',u:'https://cs231n.stanford.edu/',d:'Stanford CS231n'},
+          {n:'NLP: embeddings, RNNs, attention',u:'https://web.stanford.edu/class/cs224n/',d:'Stanford CS224n'},
+          {n:'Transformers: BERT, GPT architecture',u:'https://huggingface.co/course/chapter1/1',d:'Hugging Face course'},
+          {n:'Computer vision: object detection, segmentation',u:'https://pytorch.org/vision/stable/models.html',d:'PyTorch vision models'},
+          {n:'LLMs & RAG overview',u:'https://www.deeplearning.ai/short-courses/retrieval-augmented-generation/',d:'RAG short course'}
+        ]},
+        {id:'ml-p4',name:'Phase 4: MLOps',duration:'3-4 months',topics:[
+          {n:'Docker: containerizing ML models',u:'https://docs.docker.com/get-started/',d:'Docker get started'},
+          {n:'MLflow: experiments, registry, deployment',u:'https://mlflow.org/docs/latest/tutorials-and-examples/index.html',d:'MLflow tutorials'},
+          {n:'DVC: data & model versioning',u:'https://dvc.org/doc/start',d:'DVC get started'},
+          {n:'FastAPI: REST APIs for inference',u:'https://fastapi.tiangolo.com/tutorial/',d:'FastAPI tutorial'},
+          {n:'Feature stores (Feast, Tecton)',u:'https://docs.feast.dev/',d:'Feast docs'},
+          {n:'Model monitoring & drift detection',u:'https://mlflow.org/docs/latest/tracking.html',d:'MLflow tracking'},
+          {n:'CI/CD for ML pipelines',u:'https://martinfowler.com/articles/cd4ml.html',d:'CD4ML - Martin Fowler'}
+        ]},
+        {id:'ml-p5',name:'Phase 5: Cloud & Big Data',duration:'2-3 months',topics:[
+          {n:'Cloud ML: SageMaker, Vertex AI, Azure ML',u:'https://aws.amazon.com/sagemaker/getting-started/',d:'SageMaker getting started'},
+          {n:'Spark MLlib, distributed training',u:'https://spark.apache.org/docs/latest/ml-guide.html',d:'Spark MLlib'},
+          {n:'Kafka for real-time inference',u:'https://kafka.apache.org/documentation/',d:'Kafka docs'},
+          {n:'Kubernetes for model serving',u:'https://kubernetes.io/docs/home/',d:'Kubernetes docs'}
+        ]},
+        {id:'ml-p6',name:'Phase 6: Advanced & Portfolio',duration:'Ongoing',topics:[
+          {n:'Time series, RL, or Graph ML',u:'https://www.kaggle.com/learn',d:'Kaggle Learn'},
+          {n:'15-20 portfolio projects',u:ROOT+'/blob/main/progress/phase7-projects.md',d:'Projects tracker'},
+          {n:'System design for ML',u:'https://github.com/ananttripathi/System-Design',d:'System Design repo'},
+          {n:'Interview prep: coding, ML, design',u:ROOT+'/blob/main/docs/INTERVIEW_PREP.md',d:'Interview prep'}
+        ]}
       ]},
       'ai-engineer':{name:'AI Engineer',phases:[
-        {id:'ai-p0',name:'Phase 0: Prerequisites',duration:'1-2 weeks',topics:['Python proficiency','API basics (REST, JSON)','Git & command line']},
-        {id:'ai-p1',name:'Phase 1: ML Foundation',duration:'2-3 months',topics:['Python & scikit-learn basics','Neural networks fundamentals','PyTorch or TensorFlow basics','NLP intro: tokenization, embeddings']},
-        {id:'ai-p2',name:'Phase 2: NLP & Transformers',duration:'2-3 months',topics:['Transformer architecture deep dive','Hugging Face: models, tokenizers, pipelines','BERT, GPT, T5 variants','Fine-tuning: full vs adapter-based','Prompt engineering patterns']},
-        {id:'ai-p3',name:'Phase 3: LLMs & RAG',duration:'3-4 months',topics:['Prompt engineering: few-shot, chain-of-thought','RAG: chunking, retrieval, generation','Vector DBs: Chroma, Pinecone, Weaviate, Qdrant','Embeddings: OpenAI, sentence-transformers','LangChain: chains, agents, memory','LlamaIndex: indexing, query engines','Reranking & hybrid search']},
-        {id:'ai-p4',name:'Phase 4: Production AI',duration:'2-3 months',topics:['LLM APIs: OpenAI, Anthropic, Gemini','FastAPI for AI apps, streaming','Docker & cloud deployment','Cost optimization: caching, batching','Rate limiting & error handling']},
-        {id:'ai-p5',name:'Phase 5: Advanced & Agents',duration:'2-3 months',topics:['Fine-tuning: LoRA, QLoRA, PEFT','AI agents: ReAct, tool use, planning','Multimodal: vision + language models','Evaluation: benchmarks, human eval','Observability: LangSmith, Arize']},
-        {id:'ai-p6',name:'Phase 6: Specialization & Portfolio',duration:'Ongoing',topics:['Domain-specific apps (legal, medical, etc.)','Custom pipelines & automation','Portfolio: 5-10 GenAI projects','Interview prep: LLMs, RAG, system design']}
+        {id:'ai-p0',name:'Phase 0: Prerequisites',duration:'1-2 weeks',topics:[
+          {n:'Python proficiency',u:'https://docs.python.org/3/tutorial/',d:'Python tutorial'},
+          {n:'API basics (REST, JSON)',u:'https://restfulapi.net/',d:'REST API tutorial'},
+          {n:'Git & command line',u:'https://learngitbranching.js.org/',d:'Learn Git Branching'}
+        ]},
+        {id:'ai-p1',name:'Phase 1: ML Foundation',duration:'2-3 months',topics:[
+          {n:'Python & scikit-learn basics',u:'https://scikit-learn.org/stable/tutorial/basic/tutorial.html',d:'sklearn tutorial'},
+          {n:'Neural networks fundamentals',u:'https://www.youtube.com/watch?v=aircAruvnKk',d:'3Blue1Brown - NN'},
+          {n:'PyTorch or TensorFlow basics',u:'https://pytorch.org/tutorials/beginner/basics/intro.html',d:'PyTorch intro'},
+          {n:'NLP intro: tokenization, embeddings',u:'https://huggingface.co/course/chapter1/1',d:'Hugging Face - Ch1'}
+        ]},
+        {id:'ai-p2',name:'Phase 2: NLP & Transformers',duration:'2-3 months',topics:[
+          {n:'Transformer architecture deep dive',u:'https://jalammar.github.io/illustrated-transformer/',d:'Illustrated Transformer'},
+          {n:'Hugging Face: models, tokenizers, pipelines',u:'https://huggingface.co/docs/transformers/quicktour',d:'Transformers quicktour'},
+          {n:'BERT, GPT, T5 variants',u:'https://huggingface.co/course/chapter1/4',d:'HF - Model architectures'},
+          {n:'Fine-tuning: full vs adapter-based',u:'https://huggingface.co/docs/peft',d:'PEFT documentation'},
+          {n:'Prompt engineering patterns',u:'https://www.promptingguide.ai/',d:'Prompt Engineering Guide'}
+        ]},
+        {id:'ai-p3',name:'Phase 3: LLMs & RAG',duration:'3-4 months',topics:[
+          {n:'Prompt engineering: few-shot, chain-of-thought',u:'https://www.promptingguide.ai/techniques/cot',d:'Chain-of-Thought'},
+          {n:'RAG: chunking, retrieval, generation',u:'https://www.deeplearning.ai/short-courses/retrieval-augmented-generation/',d:'RAG short course'},
+          {n:'Vector DBs: Chroma, Pinecone, Weaviate, Qdrant',u:'https://docs.trychroma.com/getting-started',d:'Chroma getting started'},
+          {n:'Embeddings: OpenAI, sentence-transformers',u:'https://www.sbert.net/docs/quickstart.html',d:'sentence-transformers'},
+          {n:'LangChain: chains, agents, memory',u:'https://python.langchain.com/docs/get_started/introduction',d:'LangChain intro'},
+          {n:'LlamaIndex: indexing, query engines',u:'https://docs.llamaindex.ai/en/stable/getting_started/starter_example/',d:'LlamaIndex starter'},
+          {n:'Reranking & hybrid search',u:'https://www.sbert.net/examples/applications/cross-encoder/README.html',d:'Cross-encoder reranking'}
+        ]},
+        {id:'ai-p4',name:'Phase 4: Production AI',duration:'2-3 months',topics:[
+          {n:'LLM APIs: OpenAI, Anthropic, Gemini',u:'https://platform.openai.com/docs/quickstart',d:'OpenAI quickstart'},
+          {n:'FastAPI for AI apps, streaming',u:'https://fastapi.tiangolo.com/advanced/custom-response/#streamingresponse',d:'FastAPI streaming'},
+          {n:'Docker & cloud deployment',u:'https://docs.docker.com/get-started/',d:'Docker get started'},
+          {n:'Cost optimization: caching, batching',u:'https://docs.llamaindex.ai/en/stable/optimizing/caching/',d:'LlamaIndex caching'},
+          {n:'Rate limiting & error handling',u:'https://platform.openai.com/docs/guides/rate-limits',d:'OpenAI rate limits'}
+        ]},
+        {id:'ai-p5',name:'Phase 5: Advanced & Agents',duration:'2-3 months',topics:[
+          {n:'Fine-tuning: LoRA, QLoRA, PEFT',u:'https://huggingface.co/blog/trl-peft',d:'TRL + PEFT blog'},
+          {n:'AI agents: ReAct, tool use, planning',u:'https://python.langchain.com/docs/modules/agents/',d:'LangChain agents'},
+          {n:'Multimodal: vision + language models',u:'https://huggingface.co/blog/florence-2',d:'Multimodal models'},
+          {n:'Evaluation: benchmarks, human eval',u:'https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard',d:'LLM leaderboard'},
+          {n:'Observability: LangSmith, Arize',u:'https://docs.smith.langchain.com/',d:'LangSmith docs'}
+        ]},
+        {id:'ai-p6',name:'Phase 6: Specialization & Portfolio',duration:'Ongoing',topics:[
+          {n:'Domain-specific apps (legal, medical, etc.)',u:'https://github.com/langchain-ai/awesome-langchain',d:'Awesome LangChain'},
+          {n:'Custom pipelines & automation',u:'https://python.langchain.com/docs/use_cases/',d:'LangChain use cases'},
+          {n:'Portfolio: 5-10 GenAI projects',u:ROOT+'/blob/main/projects/advanced/README.md',d:'Advanced projects'},
+          {n:'Interview prep: LLMs, RAG, system design',u:ROOT+'/blob/main/docs/INTERVIEW_PREP.md',d:'Interview prep'}
+        ]}
       ]}
     };
     let currentJourney=null;
@@ -175,13 +339,18 @@
         const done=phaseComplete(currentJourney,phase);
         const div=document.createElement('div');
         div.className='phase-card expanded';
-        div.innerHTML='<div class="phase-header"><div class="phase-check '+(done?'checked':'')+'" data-pid="'+phase.id+'"></div><h3>'+phase.name+'</h3><span class="phase-duration">'+phase.duration+'</span><span class="phase-toggle">▼</span></div><div class="phase-content"><ul class="topic-list">'+phase.topics.map((t,i)=>{const d=topicDone(currentJourney,phase.id,i);return'<li class="topic-item '+(d?'done':'')+'"><div class="topic-checkbox '+(d?'checked':'')+'" data-key="'+pk(currentJourney,phase.id,i)+'"></div><span class="topic-label">'+t+'</span></li>'}).join('')+'</ul></div>';
+        const topicsHtml=phase.topics.map((t,i)=>{
+          const d=topicDone(currentJourney,phase.id,i);
+          const link=t.u?'<a href="'+t.u+'" target="_blank" rel="noopener" class="topic-link" onclick="event.stopPropagation()">'+t.n+' <span class="link-icon">↗</span></a>':'<span class="topic-label">'+t.n+'</span>';
+          const desc=t.d?'<div class="topic-desc">'+t.d+'</div>':'';
+          return '<li class="topic-item '+(d?'done':'')+'"><div class="topic-checkbox '+(d?'checked':'')+'" data-key="'+pk(currentJourney,phase.id,i)+'"></div><div class="topic-content">'+link+desc+'</div></li>';
+        }).join('');
+        div.innerHTML='<div class="phase-header"><div class="phase-check '+(done?'checked':'')+'" data-pid="'+phase.id+'"></div><h3>'+phase.name+'</h3><span class="phase-duration">'+phase.duration+'</span><span class="phase-toggle">▼</span></div><div class="phase-content"><ul class="topic-list">'+topicsHtml+'</ul></div>';
         c.appendChild(div);
       });
-      document.querySelectorAll('.phase-header').forEach(h=>{const card=h.closest('.phase-card');h.onclick=e=>{if(!e.target.classList.contains('topic-checkbox')&&!e.target.closest('.topic-checkbox')&&!e.target.classList.contains('phase-check'))card.classList.toggle('expanded')}});
+      document.querySelectorAll('.phase-header').forEach(h=>{const card=h.closest('.phase-card');h.onclick=e=>{if(!e.target.closest('a')&&!e.target.classList.contains('topic-checkbox')&&!e.target.closest('.topic-checkbox')&&!e.target.classList.contains('phase-check'))card.classList.toggle('expanded')}});
       document.querySelectorAll('.phase-check').forEach(el=>{el.onclick=e=>{e.stopPropagation();const p=roadmaps[currentJourney].phases.find(x=>x.id===el.dataset.pid);const all=phaseComplete(currentJourney,p);p.topics.forEach((_,i)=>{progress[pk(currentJourney,p.id,i)]=!all});saveProgress();render()}});
       document.querySelectorAll('.topic-checkbox').forEach(el=>{el.onclick=e=>{e.stopPropagation();progress[el.dataset.key]=!progress[el.dataset.key];saveProgress();render()}});
-      document.querySelectorAll('.topic-label').forEach(l=>{l.onclick=()=>l.closest('.topic-item').querySelector('.topic-checkbox').click()});
       document.getElementById('progressBar').style.width=overallPct(currentJourney)+'%';
       document.getElementById('progressText').textContent=overallPct(currentJourney)+'% complete';
     }
