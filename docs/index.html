@@ -4,22 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Learning Roadmap | Data & AI Careers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/roadmap.css">
+  <style>
+    :root {
+      --bg-primary: #0f0f12;
+      --bg-card: #23232a;
+      --accent: #6366f1;
+      --accent-muted: rgba(99, 102, 241, 0.15);
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --border: #27272a;
+      --success: #22c55e;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;min-height:100vh}
+    .app{max-width:900px;margin:0 auto;padding:2rem 1.5rem;min-height:calc(100vh - 60px)}
+    .header{text-align:center;margin-bottom:3rem}
+    .logo{font-size:1.75rem;font-weight:700;margin:0 0 0.5rem}
+    .tagline{color:var(--text-secondary);font-size:1rem;margin:0}
+    .journey-selection h2{font-size:1.25rem;color:var(--text-secondary);margin-bottom:1.5rem;text-align:center}
+    .journey-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+    .journey-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;cursor:pointer;transition:all 0.2s;text-align:left}
+    .journey-card:hover{border-color:var(--accent);background:var(--accent-muted);transform:translateY(-2px)}
+    .card-icon{font-size:2rem;display:block;margin-bottom:0.75rem}
+    .journey-card h3{font-size:1.1rem;margin:0 0 0.5rem}
+    .journey-card p{color:var(--text-secondary);font-size:0.9rem;margin:0 0 0.75rem}
+    .card-duration{font-size:0.8rem;color:var(--accent)}
+    .roadmap-section.hidden,.journey-selection.hidden{display:none!important}
+    .roadmap-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
+    .back-btn{background:transparent;border:1px solid var(--border);color:var(--text-secondary);padding:0.5rem 1rem;border-radius:var(--radius-sm);cursor:pointer;font-size:0.9rem}
+    .back-btn:hover{background:var(--bg-card);color:var(--text-primary)}
+    .progress-summary{display:flex;align-items:center;gap:1rem}
+    .progress-bar-container{width:120px;height:8px;background:var(--bg-card);border-radius:4px;overflow:hidden}
+    .progress-bar{height:100%;background:var(--accent);border-radius:4px;transition:width 0.3s}
+    .progress-text{font-size:0.9rem;color:var(--text-secondary)}
+    .phase-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1rem;overflow:hidden}
+    .phase-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;cursor:pointer}
+    .phase-header:hover{background:rgba(255,255,255,0.02)}
+    .phase-header h3{flex:1;margin:0;font-size:1.05rem}
+    .phase-duration{font-size:0.8rem;color:var(--text-muted)}
+    .phase-check{width:24px;height:24px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .phase-check.checked{background:var(--success);border-color:var(--success)}
+    .phase-check.checked::after{content:'✓';color:white;font-size:12px;font-weight:bold}
+    .phase-toggle{color:var(--text-muted);font-size:1.2rem}
+    .phase-card.expanded .phase-toggle{transform:rotate(180deg)}
+    .phase-content{display:none;padding:0 1.25rem 1.25rem;border-top:1px solid var(--border)}
+    .phase-card.expanded .phase-content{display:block}
+    .topic-list{list-style:none;padding:0;margin:0.75rem 0 0}
+    .topic-item{display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.95rem}
+    .topic-item:last-child{border-bottom:none}
+    .topic-checkbox{width:20px;height:20px;border-radius:4px;border:2px solid var(--border);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .topic-checkbox:hover{border-color:var(--accent)}
+    .topic-checkbox.checked{background:var(--success);border-color:var(--success)}
+    .topic-checkbox.checked::after{content:'✓';color:white;font-size:11px;font-weight:bold}
+    .topic-label{flex:1;cursor:pointer}
+    .topic-item.done .topic-label{color:var(--text-muted);text-decoration:line-through}
+    .footer{text-align:center;padding:2rem;color:var(--text-muted);font-size:0.9rem}
+    .footer a{color:var(--accent);text-decoration:none}
+    @media(max-width:600px){.app{padding:1rem}.journey-cards{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
   <div class="app">
-    <!-- Header -->
     <header class="header">
-      <div class="header-content">
-        <h1 class="logo">📚 Learning Roadmap</h1>
-        <p class="tagline">Choose your path. Track your progress. Build your career.</p>
-      </div>
+      <h1 class="logo">📚 Learning Roadmap</h1>
+      <p class="tagline">Choose your path. Track your progress. Build your career.</p>
     </header>
 
-    <!-- Journey Selection -->
     <section class="journey-selection" id="journeySection">
       <h2>Choose Your Journey</h2>
       <div class="journey-cards">
@@ -50,7 +103,6 @@
       </div>
     </section>
 
-    <!-- Roadmap View -->
     <section class="roadmap-section hidden" id="roadmapSection">
       <div class="roadmap-header">
         <button class="back-btn" id="backBtn">← Back to journeys</button>
@@ -61,22 +113,75 @@
           <span class="progress-text" id="progressText">0% complete</span>
         </div>
       </div>
-
-      <div class="roadmap-content" id="roadmapContent">
-        <!-- Populated by JS -->
-      </div>
+      <div class="roadmap-content" id="roadmapContent"></div>
     </section>
   </div>
 
   <footer class="footer">
-    <p>
-      <a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap" target="_blank">View on GitHub</a> •
-      <a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap/blob/main/docs/QUICK_START.md" target="_blank">Quick Start</a> •
-      <a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap/blob/main/docs/STUDY_SCHEDULES.md" target="_blank">Study Schedules</a>
-      • Progress saved locally in your browser
-    </p>
+    <p><a href="https://github.com/ananttripathi/Senior-Data-Scientist-Roadmap" target="_blank">View on GitHub</a> • Progress saved in browser</p>
   </footer>
 
-  <script src="assets/roadmap.js"></script>
+  <script>
+    const STORAGE_KEY='roadmap-progress';
+    const roadmaps={
+      'data-engineer':{name:'Data Engineer',phases:[
+        {id:'de-p1',name:'Phase 1: Foundations',duration:'2-3 months',topics:['Python: data structures, OOP, file I/O','SQL: SELECT, JOINs, aggregates, window functions','Git & version control','Relational databases (PostgreSQL/MySQL)','Data modeling: ERD, star schema','Linux & command line basics']},
+        {id:'de-p2',name:'Phase 2: Core Data Engineering',duration:'3-4 months',topics:['ETL/ELT pipeline design','Apache Airflow','Cloud platform (AWS S3, RDS, Redshift)','Data warehousing (Snowflake, BigQuery)','Data quality & testing','dbt for transformations']},
+        {id:'de-p3',name:'Phase 3: Advanced',duration:'3-4 months',topics:['Apache Spark & PySpark','Kafka & stream processing','Data Lakehouse (Delta, Iceberg)','Docker & CI/CD','Data governance & security','Monitoring (Prometheus, Grafana)']}
+      ]},
+      'data-scientist':{name:'Data Scientist',phases:[
+        {id:'ds-p1',name:'Phase 1: Foundation',duration:'3-4 months',topics:['Mathematics: Linear Algebra, Calculus','Statistics & Probability','Python: NumPy, Pandas','Data visualization (Matplotlib, Seaborn)','SQL fundamentals','Jupyter & exploratory analysis']},
+        {id:'ds-p2',name:'Phase 2: Machine Learning',duration:'4-5 months',topics:['Supervised learning (regression, classification)','Unsupervised learning (clustering, PCA)','Model evaluation & validation','Feature engineering','Tree-based models (RF, XGBoost)','Statistical modeling']},
+        {id:'ds-p3',name:'Phase 3: Advanced & Domain',duration:'3-4 months',topics:['Deep learning basics','NLP or Computer Vision intro','A/B testing & experimentation','Business metrics & storytelling','Dashboard tools (Tableau, Looker)','Portfolio projects']}
+      ]},
+      'ml-engineer':{name:'ML Engineer',phases:[
+        {id:'ml-p0',name:'Phase 0: Developer Fundamentals',duration:'1-2 weeks',topics:['Command line basics','Git & GitHub','IDE setup (VS Code)','Virtual environments']},
+        {id:'ml-p1',name:'Phase 1: Foundation',duration:'3-4 months',topics:['Linear Algebra & Calculus','Probability & Statistics','Python: NumPy, Pandas, Matplotlib','Jupyter Notebooks']},
+        {id:'ml-p2',name:'Phase 2: ML Fundamentals',duration:'4-6 months',topics:['Supervised & unsupervised learning','Model evaluation & cross-validation','Feature engineering','Tree models, XGBoost, LightGBM','SQL & data processing']},
+        {id:'ml-p3',name:'Phase 3: Deep Learning',duration:'5-7 months',topics:['Neural networks & backpropagation','PyTorch or TensorFlow','CNNs for computer vision','NLP & Transformers','LLMs & RAG basics']},
+        {id:'ml-p4',name:'Phase 4: MLOps',duration:'3-4 months',topics:['Docker & containerization','MLflow, DVC','FastAPI for ML APIs','Cloud deployment (AWS/GCP)','Model monitoring']},
+        {id:'ml-p5',name:'Phase 5: Big Data',duration:'2-3 months',topics:['Apache Spark & PySpark','Kafka basics','Streaming pipelines']},
+        {id:'ml-p6',name:'Phase 6: Advanced & Portfolio',duration:'Ongoing',topics:['Specialization (RL, time series, etc.)','15-20 portfolio projects','Interview preparation']}
+      ]},
+      'ai-engineer':{name:'AI Engineer',phases:[
+        {id:'ai-p1',name:'Phase 1: ML Foundation',duration:'2-3 months',topics:['Python & ML basics','scikit-learn','Neural networks intro','PyTorch or TensorFlow']},
+        {id:'ai-p2',name:'Phase 2: NLP & Transformers',duration:'2-3 months',topics:['Transformer architecture','Hugging Face ecosystem','BERT, GPT models','Fine-tuning basics']},
+        {id:'ai-p3',name:'Phase 3: LLMs & RAG',duration:'3-4 months',topics:['Prompt engineering','RAG architecture','Vector databases (Chroma, Pinecone)','LangChain / LlamaIndex','Embeddings & semantic search']},
+        {id:'ai-p4',name:'Phase 4: Production AI',duration:'2-3 months',topics:['LLM APIs (OpenAI, Anthropic)','FastAPI for AI apps','Docker & deployment','Cost optimization & caching']},
+        {id:'ai-p5',name:'Phase 5: Advanced',duration:'Ongoing',topics:['Fine-tuning (LoRA, QLoRA)','AI agents & tool use','Multimodal models','Evaluation & monitoring']}
+      ]}
+    };
+    let currentJourney=null;
+    let progress={};
+    function loadProgress(){try{const d=localStorage.getItem(STORAGE_KEY);return d?JSON.parse(d):{}}catch{return{}}}
+    function saveProgress(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(progress))}catch(e){}}
+    function pk(j,pid,i){return i===undefined?j+'_'+pid:j+'_'+pid+'_'+i}
+    function phaseComplete(j,p){return p.topics.every((_,i)=>!!progress[pk(j,p.id,i)])}
+    function topicDone(j,pid,i){return!!progress[pk(j,pid,i)]}
+    function overallPct(j){let t=0,d=0;roadmaps[j].phases.forEach(p=>{p.topics.forEach((_,i)=>{t++;if(topicDone(j,p.id,i))d++})});return t?Math.round(d/t*100):0}
+    function render(){
+      const rd=roadmaps[currentJourney];
+      const c=document.getElementById('roadmapContent');
+      c.innerHTML='';
+      rd.phases.forEach(phase=>{
+        const done=phaseComplete(currentJourney,phase);
+        const div=document.createElement('div');
+        div.className='phase-card expanded';
+        div.innerHTML='<div class="phase-header"><div class="phase-check '+(done?'checked':'')+'" data-pid="'+phase.id+'"></div><h3>'+phase.name+'</h3><span class="phase-duration">'+phase.duration+'</span><span class="phase-toggle">▼</span></div><div class="phase-content"><ul class="topic-list">'+phase.topics.map((t,i)=>{const d=topicDone(currentJourney,phase.id,i);return'<li class="topic-item '+(d?'done':'')+'"><div class="topic-checkbox '+(d?'checked':'')+'" data-key="'+pk(currentJourney,phase.id,i)+'"></div><span class="topic-label">'+t+'</span></li>'}).join('')+'</ul></div>';
+        c.appendChild(div);
+      });
+      document.querySelectorAll('.phase-header').forEach(h=>{const card=h.closest('.phase-card');h.onclick=e=>{if(!e.target.classList.contains('topic-checkbox')&&!e.target.closest('.topic-checkbox')&&!e.target.classList.contains('phase-check'))card.classList.toggle('expanded')}});
+      document.querySelectorAll('.phase-check').forEach(el=>{el.onclick=e=>{e.stopPropagation();const p=roadmaps[currentJourney].phases.find(x=>x.id===el.dataset.pid);const all=phaseComplete(currentJourney,p);p.topics.forEach((_,i)=>{progress[pk(currentJourney,p.id,i)]=!all});saveProgress();render()}});
+      document.querySelectorAll('.topic-checkbox').forEach(el=>{el.onclick=e=>{e.stopPropagation();progress[el.dataset.key]=!progress[el.dataset.key];saveProgress();render()}});
+      document.querySelectorAll('.topic-label').forEach(l=>{l.onclick=()=>l.closest('.topic-item').querySelector('.topic-checkbox').click()});
+      document.getElementById('progressBar').style.width=overallPct(currentJourney)+'%';
+      document.getElementById('progressText').textContent=overallPct(currentJourney)+'% complete';
+    }
+    function showJourney(){currentJourney=null;document.getElementById('journeySection').classList.remove('hidden');document.getElementById('roadmapSection').classList.add('hidden')}
+    function showRoadmap(j){currentJourney=j;document.getElementById('journeySection').classList.add('hidden');document.getElementById('roadmapSection').classList.remove('hidden');render()}
+    progress=loadProgress();
+    document.querySelectorAll('.journey-card').forEach(c=>c.onclick=()=>showRoadmap(c.dataset.journey));
+    document.getElementById('backBtn').onclick=showJourney;
+  </script>
 </body>
 </html>
