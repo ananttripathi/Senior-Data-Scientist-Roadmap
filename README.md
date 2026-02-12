@@ -8,7 +8,7 @@
 
 **A comprehensive, structured roadmap to become an AI/ML Engineer from scratch**
 
-[📖 Full Roadmap Doc](./AI_ML_Engineer_Complete_Roadmap.docx) • [📊 Track Progress](#progress-tracking) • [🤝 Contributing](#contributing)
+[📖 Full Roadmap Doc](./AI_ML_Engineer_Complete_Roadmap.docx) • [⚡ Quick Start](./docs/QUICK_START.md) • [📊 Track Progress](#progress-tracking) • [🤝 Contributing](#contributing)
 
 </div>
 
@@ -17,10 +17,11 @@
 ## 📋 Table of Contents
 
 - [About This Roadmap](#about-this-roadmap)
+- [Quick Start](#-quick-start)
 - [Learning Path Overview](#learning-path-overview)
 - [Progress Tracking](#progress-tracking)
 - [Repository Structure](#repository-structure)
-- [How to Use This Repo](#how-to-use-this-repo)
+- [Guides & Documentation](#-guides--documentation)
 - [Resources](#resources)
 - [Projects Showcase](#projects-showcase)
 - [Contributing](#contributing)
@@ -54,10 +55,31 @@ This repository contains a **complete, actionable roadmap** for transitioning in
 
 ---
 
+## ⚡ Quick Start
+
+**New here?** Choose your path:
+
+| Your Background | Start Here |
+|-----------------|------------|
+| **Complete beginner** | [Phase 0: Developer Fundamentals](./MISSING_TOPICS_SUPPLEMENT.md#-phase-0-developer-fundamentals-start-here) → [Phase 1](./progress/phase1-foundation.md) |
+| **Programmer / Data Analyst** | [Phase 2: ML Fundamentals](./progress/phase2-ml-fundamentals.md) |
+| **Experienced ML Engineer** | [Phase 3: LLMs & GenAI](./progress/phase3-deep-learning-ai.md) + [Phase 4: MLOps](./progress/phase4-mlops-production.md) |
+
+📖 **[Full Quick Start Guide](./docs/QUICK_START.md)** — Study schedules, first 7 days, path selection
+
+---
+
 ## 🗺️ Learning Path Overview
+
+### Phase 0: Developer Fundamentals (1-2 weeks) — *Start here if new to coding*
+**Topics:** Command line • Git & GitHub • IDE setup • Virtual environments
+
+📌 See [MISSING_TOPICS_SUPPLEMENT.md](./MISSING_TOPICS_SUPPLEMENT.md) for details
 
 ### Phase 1: Foundation (3-4 months)
 **Topics:** Mathematics (Linear Algebra, Calculus, Statistics) • Python Programming • NumPy, Pandas, Matplotlib
+
+**Supplement:** [Applied Statistics](./Applied-Statistics/README.md) — Statistical concepts for ML
 
 **Status:** ![Not Started](https://img.shields.io/badge/Status-Not%20Started-lightgrey)
 
@@ -120,6 +142,20 @@ Track your progress in the dedicated progress files:
 
 ---
 
+## 📖 Guides & Documentation
+
+| Guide | Purpose |
+|-------|---------|
+| [Quick Start](./docs/QUICK_START.md) | Choose your path, first 7 days |
+| [Study Schedules](./docs/STUDY_SCHEDULES.md) | Accelerated / Standard / Part-time plans |
+| [Interview Prep](./docs/INTERVIEW_PREP.md) | Technical questions, STAR, system design |
+| [How to Track Progress](./docs/HOW_TO_TRACK_PROGRESS.md) | Daily workflow, weekly routine |
+| [Repository Setup](./docs/REPO_SETUP.md) | Fork, customize, directory structure |
+
+**Related:** [Data Engineering](./Data_Engineering_roadmap.md) • [Missing Topics](./MISSING_TOPICS_SUPPLEMENT.md) • [Contributing](./CONTRIBUTING.md)
+
+---
+
 ## 📁 Repository Structure
 
 ```
@@ -155,10 +191,20 @@ ai-ml-engineer-roadmap/
 │   ├── deep-learning/
 │   └── leetcode/
 │
-└── resources/                             # Additional resources
-    ├── cheatsheets/
-    ├── books/
-    └── useful-links.md
+├── resources/                             # Curated resources
+│   ├── cheatsheets/                       # Python, Pandas, sklearn
+│   ├── books/reading-list.md
+│   └── useful-links.md
+│
+├── docs/                                  # Guides & documentation
+│   ├── QUICK_START.md
+│   ├── STUDY_SCHEDULES.md
+│   ├── INTERVIEW_PREP.md
+│   ├── HOW_TO_TRACK_PROGRESS.md
+│   └── REPO_SETUP.md
+│
+├── Applied-Statistics/                    # Stats supplement for Phase 1
+└── Data_Engineering_roadmap.md            # Data Engineering path
 ```
 
 ---
@@ -199,6 +245,8 @@ Edit the README to add your start date and commit to your journey.
 ---
 
 ## 📚 Resources
+
+📎 **[Full curated list →](resources/useful-links.md)** — 100+ links by topic
 
 ### 🆓 Free Resources
 - [3Blue1Brown - Mathematics](https://www.youtube.com/c/3blue1brown)

@@ -11,7 +11,12 @@ ai-ml-engineer-roadmap/
 │
 ├── README.md                                    # Main repo overview
 ├── PROGRESS_DASHBOARD.md                        # Quick progress stats
-├── HOW_TO_TRACK_PROGRESS.md                    # Tracking guide
+├── docs/                                        # Guides
+│   ├── HOW_TO_TRACK_PROGRESS.md                 # Tracking guide
+│   ├── REPO_SETUP.md                            # This file
+│   ├── QUICK_START.md                           # Getting started
+│   ├── STUDY_SCHEDULES.md                       # Study plans
+│   └── INTERVIEW_PREP.md                        # Interview prep
 ├── AI_ML_Engineer_Complete_Roadmap.docx        # Full roadmap document
 ├── LICENSE                                      # MIT License (optional)
 │

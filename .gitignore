@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data files (uncomment if excluding large data)
+# *.csv
+# *.zip
+# *.parquet
+# data/raw/
+# data/processed/
+
+# Models (uncomment if excluding large models)
+# models/*.h5
+# models/*.pkl
+# *.pth
+# *.pt
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment & secrets
+.env
+.env.local
+*.key
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
